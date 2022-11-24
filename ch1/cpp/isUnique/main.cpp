@@ -11,7 +11,16 @@ bool withBitVector(string str){
     un 1 (true) en la posicion que le corresponde.
     Si la proxima letra esta activada entonces esta repetida
     */
-    bitset<256> bits(7);   
+    bitset<256> bits(0); 
+
+    for(int i = 0;i<str.length();i++){
+        if(bits.test(str[i]) > 0 ){
+            return true;
+        }
+        bits.set(str[i]);   
+    }  
+    return false;
+
 
     cout<<bits<<" "<<bits.count()<<endl;
 
@@ -31,16 +40,21 @@ bool noDataStructure(string str){
 }
 
 int main(){
-    string test_str = "qwertyuii";
+    string test_str = "qqwertyui";
 
     bool result = noDataStructure(test_str);
     cout<<"Using no DS: ";
     result?cout<<"Si hay repetidas"<<endl:cout<<"NO hay repetidas"<<endl;
 
     result = withBitVector(test_str);
-    cout<<"Using no DS: ";
+    cout<<"Using bit structure: ";
     result?cout<<"Si hay repetidas"<<endl:cout<<"NO hay repetidas"<<endl;
 
     
     return 0;
 }
+
+/*
+TODO:
+    [] Measure execution time
+*/
